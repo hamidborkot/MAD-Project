@@ -459,22 +459,6 @@ CDA = (# correct predictions) / (# total samples) × 100%
 
 ---
 
-## 📝 Citation
-
-If you find this work useful, please cite:
-
-```bibtex
-@article{mad2026,
-  title={Mitigation via Adaptive Decomposition: Geometry-Guided Subspace Decomposition for Robust Backdoor Defense},
-  author={[Your Name] and [Co-authors]},
-  journal={Transactions on Machine Learning Research},
-  year={2026},
-  url={https://arxiv.org/abs/2XXX.XXXXX}
-}
-```
-
----
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -520,8 +504,7 @@ furnished to do so, subject to the following conditions:
 
 For questions or issues, please:
 - Open an issue on GitHub
-- Email: [your.email@institution.edu]
-- Project website: [https://yourusername.github.io/MAD]
+- Email: [hamidborkot@stmail.ntu.edu.cn.edu]
 
 ---
 
