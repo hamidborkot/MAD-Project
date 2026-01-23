@@ -1,8 +1,91 @@
-# ✅ COMPLETE MAD SINGLE-FILE IMPLEMENTATION - FINAL SUMMARY
+# MAD: Mitigation via Adaptive Decomposition
 
-## What You Have
+**Geometry-Guided Subspace Decomposition for Robust Backdoor Defense**
 
-**Complete, production-ready, single Python file** covering your entire research:
+[![arXiv](https://img.shields.io/badge/arXiv-2XXX.XXXXX-b31b1b.svg)](https://arxiv.org/abs/2XXX.XXXXX)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
+
+---
+
+## 📋 Table of Contents
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Repository Structure](#repository-structure)
+- [Experimental Results](#experimental-results)
+- [Datasets & Models](#datasets--models)
+- [Theoretical Guarantees](#theoretical-guarantees)
+- [Reproducing Results](#reproducing-results)
+- [Citation](#citation)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
+---
+
+## 🔍 Overview
+
+**MAD** (Mitigation via Adaptive Decomposition) is a post-training backdoor defense that exploits the geometric structure of backdoors in neural network weight space. Unlike existing defenses, MAD:
+
+- 🎯 **Identifies low-rank malicious subspaces** through eigenanalysis of clean-data gradient covariance
+- 🛡️ **Applies localized sharpness-aware optimization** exclusively within the backdoor subspace
+- 🚀 **Achieves ASR ≤5.12%** across standard and adaptive attacks while preserving clean accuracy within 0.4%
+- ⚡ **Robust against adaptive adversaries** (GOA, LASE) that flatten global loss landscapes
+
+### Problem Setting
+Given a potentially backdoored model and a small trusted clean calibration set (≤1% of training data), MAD neutralizes backdoor functionality while preserving model utility—without knowledge of the trigger pattern, target class, or poisoning rate.
+
+---
+
+## ✨ Key Features
+
+### 1. **Geometric Backdoor Characterization**
+- Backdoor triggers concentrate in low-rank subspaces (K=10 dimensions)
+- Total Structure Retention (TSR) ≈ 0.98 validates low-rank hypothesis
+- Theoretical analysis via Theorems 1-3 and Corollaries
+
+### 2. **Gradient Covariance Eigenanalysis**
+- Identifies malicious subspace from clean data only
+- Complexity: O(d³) ≈ 0.13s per epoch (ResNet-50)
+- Memory overhead: 15.2% of model size
+
+### 3. **Localized Sharpness-Aware Minimization**
+- Restricts SAM perturbations to backdoor subspace
+- Preserves semantic features in orthogonal complement
+- 60% faster convergence than global SAM methods
+
+### 4. **Calibration Density Principle**
+- Theoretical threshold: ρ ≥ 0.21×10⁻⁴ (clean-samples-to-parameters)
+- Provides concrete guidance for deployment across model scales
+- Validated empirically with phase transition analysis
+
+---
+
+## 🔧 Installation
+
+### Prerequisites
+- Python 3.8+
+- CUDA 11.8+ (for GPU acceleration)
+- 16GB+ RAM (32GB recommended for ImageNet experiments)
+
+### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/hamidborkot/MAD-Project.git
+cd MAD
+
+# Create virtual environment
+python -m venv mad_env
+source mad_env/bin/activate  # On Windows: mad_env\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Install in editable mode
+pip install -e 
 
 ```
 MAD_Complete_SingleFile.py
