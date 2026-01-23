@@ -74,7 +74,7 @@ Given a potentially backdoored model and a small trusted clean calibration set (
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/MAD.git
+git clone https://github.com/hamidborkot/MAD-Project.git
 cd MAD
 
 # Create virtual environment
@@ -241,15 +241,6 @@ MAD/
 
 *ResNet-18 on CIFAR-10. Mean over 30 seeds. All MAD vs. FT-SAM: p ≤ 1.05×10⁻⁶*
 
-### Cross-Architecture Generalization
-
-| Model | Params | Calib. Size | Baseline ASR | MAD ASR | CDA | CDA Drop |
-|-------|--------|-------------|--------------|---------|-----|----------|
-| ResNet-18 | 11.2M | 1K | 99.8% | 5.8% | 91.1% | 0.11 pp |
-| DenseNet-121 | 7.0M | 1K | 98.5% | 2.2% | 91.1% | 0.12 pp |
-| MobileNet-V2 | 2.3M | 1K | 97.8% | 3.1% | 90.9% | 0.28 pp |
-| ViT-Tiny | 5.7M | 1K | 94.1% | 3.9% | 90.9% | 0.45 pp |
-| ResNet-50 | 23.5M | 5K | 98.1% | 4.9% | 91.5% | 0.18 pp |
 
 ### Safety-Critical Domain (GTSRB)
 
@@ -260,25 +251,14 @@ MAD/
 
 *5-fold cross-validation on German Traffic Sign Recognition Benchmark*
 
-### Calibration Density Validation (Theorem 2)
-
-| Calib. Size | ρ (×10⁻⁴) | TSR | MAD ASR | CDA |
-|-------------|-----------|-----|---------|-----|
-| 500 | 0.024 | 0.62 | 42.5% | 87.2% |
-| 1,000 | 0.049 | 0.78 | 28.3% | 88.8% |
-| 2,500 | 0.122 | 0.89 | 18.3% | 88.1% |
-| **5,000** | **0.244** | **0.97** | **4.9%** | **91.5%** |
-
-*ResNet-50 on CIFAR-10. Threshold: ρ ≥ 0.21×10⁻⁴*
-
----
+-
 
 ## 📚 Datasets & Models
 
 ### Supported Datasets
 - **CIFAR-10**: 32×32 RGB, 10 classes, 50K train / 10K test
 - **GTSRB**: Traffic signs, 43 classes, variable resolution
-- **ImageNet-1K**: 224×224 RGB, 50-class subset
+- **TinyImageNet**: 200-class subset
 
 ### Supported Architectures
 - ResNet-18, ResNet-50
@@ -343,7 +323,7 @@ python experiments/cifar10_main.py --config configs/cifar10.yaml
 # GTSRB 5-fold CV (Table 4)
 python experiments/gtsrb_eval.py --cv-folds 5 --seeds 30
 
-# ImageNet experiments (Table 4)
+# TinyImageNet experiments (Table 4)
 python experiments/imagenet_eval.py --subset 50class
 
 # Calibration scaling (Table 5, Figure 3)
@@ -352,19 +332,6 @@ python experiments/calibration_scaling.py --model resnet50
 # Distributed triggers (Table 5)
 python experiments/distributed_triggers.py --coverages 5,15,30,50
 ```
-
-### Step 3: Generate Figures
-
-```bash
-# Generate all paper figures
-python scripts/plot_results.py --output-dir figures/
-```
-
-### Expected Runtime
-- CIFAR-10 (ResNet-18): ~2 hours per attack (NVIDIA A100)
-- GTSRB (5-fold): ~6 hours total
-- ImageNet-1K: ~12 hours (ResNet-50)
-- Calibration scaling: ~8 hours
 
 ### Pretrained Models
 Download pretrained backdoored models:
@@ -512,7 +479,7 @@ For questions or issues, please:
 
 - **v1.0.0** (Jan 2026): Initial release
   - Core MAD defense implementation
-  - CIFAR-10, GTSRB, ImageNet experiments
+  - CIFAR-10, GTSRB, TinyImageNet experiments
   - 5 attack types (BadNets, Blend, WaNet, GOA, LASE)
   - Theoretical analysis and proofs
 
